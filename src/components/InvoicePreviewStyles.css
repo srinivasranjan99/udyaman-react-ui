@@ -1,0 +1,368 @@
+/* Invoice Preview Print Styles */
+
+.invoice-preview {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ========== SCREEN VIEW ========== */
+@media screen {
+  .invoice-preview {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .no-print {
+    display: block !important;
+  }
+}
+
+/* ========== PRINT VIEW ========== */
+@media print {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    width: 100%;
+    height: 100%;
+  }
+
+  .invoice-preview {
+    width: 100%;
+    max-width: 210mm;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    background: white;
+    border: none;
+    box-shadow: none;
+  }
+
+  /* Hide non-print elements */
+  .no-print,
+  button,
+  .MuiDialogActions-root,
+  .MuiAppBar-root,
+  nav,
+  .navbar {
+    display: none !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  /* Prevent page breaks */
+  table {
+    page-break-inside: avoid;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  /* Header spacing */
+  h5,
+  h6 {
+    page-break-after: avoid;
+  }
+
+  /* Ensure content flows properly */
+  div {
+    page-break-inside: avoid;
+  }
+
+  /* Grid spacing for print */
+  .MuiGrid-root {
+    page-break-inside: avoid;
+  }
+}
+
+/* ========== TYPOGRAPHY ========== */
+.invoice-preview h4,
+.invoice-preview h5,
+.invoice-preview h6 {
+  page-break-after: avoid;
+  orphans: 3;
+  widows: 3;
+}
+
+.invoice-preview p {
+  orphans: 3;
+  widows: 3;
+}
+
+/* ========== TABLES ========== */
+.invoice-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  page-break-inside: avoid;
+}
+
+.invoice-preview table thead {
+  background-color: #f5f5f5;
+  page-break-after: avoid;
+}
+
+.invoice-preview table th {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 2px solid #ddd;
+  font-weight: 600;
+  background-color: #f5f5f5;
+}
+
+.invoice-preview table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.invoice-preview table tbody tr:last-child td {
+  border-bottom: 2px solid #ddd;
+}
+
+/* ========== SUMMARY SECTION ========== */
+.invoice-preview .summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.invoice-preview .summary-row.total {
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 12px;
+  border-top: 2px solid #333;
+  border-bottom: none;
+}
+
+/* ========== DIVIDERS ========== */
+.invoice-preview hr,
+.invoice-preview .MuiDivider-root {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 16px 0;
+  page-break-after: avoid;
+}
+
+/* ========== SPACING ========== */
+.invoice-preview > * + * {
+  margin-top: 16px;
+}
+
+/* ========== COLORS FOR PRINT ========== */
+@media print {
+  /* Preserve link colors */
+  a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+
+  /* Keep text colors visible */
+  .invoice-preview {
+    color: #000;
+  }
+
+  /* Ensure header background shows */
+  .invoice-preview table thead {
+    background-color: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Ensure borders show */
+  .invoice-preview table {
+    border: 1px solid #333;
+  }
+
+  .invoice-preview table th,
+  .invoice-preview table td {
+    border: 1px solid #999;
+  }
+}
+
+/* ========== A4 PAGE LAYOUT ========== */
+@media print {
+  /* A4 dimensions: 210mm x 297mm */
+  .invoice-preview {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    overflow: hidden;
+  }
+
+  /* Prevent images from extending beyond page */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ========== RESPONSIVE (Screen Only) ========== */
+@media screen and (max-width: 768px) {
+  .invoice-preview {
+    padding: 16px;
+  }
+
+  .invoice-preview table {
+    font-size: 12px;
+  }
+
+  .invoice-preview table th,
+  .invoice-preview table td {
+    padding: 8px;
+  }
+}
+
+/* ========== FOOTER SECTION ========== */
+.invoice-preview footer,
+.invoice-preview .footer {
+  page-break-before: avoid;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+  font-size: 12px;
+  color: #999;
+}
+
+/* ========== NOTES SECTION ========== */
+.invoice-preview .notes {
+  page-break-inside: avoid;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-left: 3px solid #1976d2;
+  margin: 16px 0;
+}
+
+.invoice-preview .notes strong {
+  color: #333;
+}
+
+/* ========== COMPANY HEADER ========== */
+.invoice-preview .company-header {
+  page-break-after: avoid;
+  margin-bottom: 24px;
+}
+
+.invoice-preview .company-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.invoice-preview .company-details {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* ========== INVOICE NUMBER DISPLAY ========== */
+.invoice-preview .invoice-header-right {
+  page-break-inside: avoid;
+  text-align: right;
+}
+
+.invoice-preview .invoice-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ========== BILLING INFO ========== */
+.invoice-preview .bill-to-section {
+  page-break-inside: avoid;
+  margin: 24px 0;
+}
+
+.invoice-preview .bill-to-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.invoice-preview .bill-to-details {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ========== TOTAL AMOUNT BOX ========== */
+.invoice-preview .total-box {
+  background-color: #f0f7ff;
+  padding: 16px;
+  border-radius: 4px;
+  text-align: right;
+  page-break-inside: avoid;
+  margin-top: 24px;
+}
+
+.invoice-preview .total-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.invoice-preview .total-amount {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+/* ========== PREVENT ORPHANED HEADERS/FOOTERS ========== */
+.invoice-preview h1,
+.invoice-preview h2,
+.invoice-preview h3 {
+  page-break-after: avoid;
+  orphans: 3;
+  widows: 3;
+}
+
+/* ========== ENSURE TEXT WRAPPING ========== */
+.invoice-preview p,
+.invoice-preview td,
+.invoice-preview th {
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ========== ADJUST FOR BROWSER PRINTING ========== */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .invoice-preview {
+    box-shadow: none;
+    border: none;
+  }
+
+  /* Chrome/Edge specific */
+  @supports (-webkit-appearance: none) {
+    @page {
+      margin: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
